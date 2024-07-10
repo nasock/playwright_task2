@@ -15,6 +15,10 @@ class WebElement {
         this.getElement(selector).click();
     }
 
+    setValueInElement(selector, inputValue){
+        return this.getElement(selector).fill(inputValue);
+    }
+
 }
 
 module.exports = WebElement;

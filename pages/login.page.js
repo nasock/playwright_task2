@@ -1,4 +1,5 @@
 const BasicPage = require('./basic.page.js');
+
 const loginFormSelector = 'div#login-form';
 
 class LoginPage extends BasicPage{

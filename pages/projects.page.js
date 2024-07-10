@@ -1,4 +1,5 @@
 const BasicPage = require('./basic.page.js');
+
 const queryFormnSelector = 'form#query_form';
 const projectListSelector = 'div#projects-index';
 
