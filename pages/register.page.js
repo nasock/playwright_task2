@@ -8,6 +8,7 @@ const firsNameInputSelector = 'input#user_firstname';
 const lastNameInputSelector = 'input#user_lastname';
 const emailInputSelector = 'input#user_mail';
 const submitButtonSelector = 'input[type="submit"]';
+const errorMessagesSelector = 'div#errorExplanation li';
 
 class RegisterPage extends BasicPage{
 
@@ -44,6 +45,10 @@ class RegisterPage extends BasicPage{
         return super.getElement(emailInputSelector);
     }
 
+    get errorMessages(){
+        return super.getElement(errorMessagesSelector);
+    }
+
     setLoginInput(value){
         super.setValueInElement(loginInputSelector, value);
     }
@@ -73,3 +78,5 @@ class RegisterPage extends BasicPage{
     }
 
 }
+
+module.exports = RegisterPage;

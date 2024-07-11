@@ -1,7 +1,7 @@
 const BasicPage = require('./basic.page.js');
 const HeaderWithMainMenuComponent = require('./header-with-main-menu.component.js');
 
-class BasicPageWithMainManu extends BasicPage{
+class BasicPageWithMainMenu extends BasicPage{
 
     constructor(pwPage) {
         super(pwPage);
@@ -9,9 +9,9 @@ class BasicPageWithMainManu extends BasicPage{
     }
 
     get headerComponent(){
-        return new HeaderWithMainMenuComponent(pwPage, super.headerSelector);
+        return new HeaderWithMainMenuComponent(pwPage);
     }
 
 }
 
-module.exports = BasicPageWithMainManu;
+module.exports = BasicPageWithMainMenu;

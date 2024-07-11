@@ -1,6 +1,7 @@
 const BasicPage = require('./basic.page.js');
 
 const loginFormSelector = 'div#login-form';
+const registrationConfirmationSelector = 'div#flash_notice';
 
 class LoginPage extends BasicPage{
 
@@ -16,4 +17,10 @@ class LoginPage extends BasicPage{
     get loginForm(){
         return super.getElement(loginFormSelector);
     }
+
+    get registrationConfirmation(){
+        return super.getElement(registrationConfirmationSelector);
+    }
 }
+
+module.exports = LoginPage;

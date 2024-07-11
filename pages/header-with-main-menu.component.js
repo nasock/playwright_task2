@@ -5,8 +5,8 @@ const selectedTabSelector = 'div#main-menu a.selected';
 
 class HeaderWithMainMenuComponent extends HeaderComponent{
 
-    constructor(pwPage, baseSelector) {
-        super(pwPage, baseSelector);
+    constructor(pwPage) {
+        super(pwPage);
         this.pwPage = pwPage;
     }
 

@@ -1,13 +1,12 @@
-const WebElement = require('./web-element.js');
+const BasicElement = require('./basic-element.js');
 const HeaderComponent = require('./header.component.js');
 const TopMenuComponent = require('./top-menu.component.js');
 
-const topMenuSelector = 'div#top-menu';
-const headerSelector = 'div#header';
 const sidebarSelector = 'div#sidebar';
-const pageNamenSelector = 'div#main h1';
+const pageNameSelector = 'div#main h1';
+const pageSmallNameSelector = 'div#main h2';
 
-class BasicPage extends WebElement{
+class BasicPage extends BasicElement{
 
     constructor(pwPage) {
         super(pwPage);
@@ -15,11 +14,11 @@ class BasicPage extends WebElement{
     }
 
     get topMenuComponent(){
-        return new TopMenuComponent(pwPage, topMenuSelector);
+        return new TopMenuComponent(pwPage);
     }
 
     get headerComponent(){
-        return new HeaderComponent(pwPage, headerSelector);
+        return new HeaderComponent(pwPage);
     }
 
     get sidebar(){
@@ -27,7 +26,7 @@ class BasicPage extends WebElement{
     }
 
     get pageName(){
-        return super.getElement(pageNamenSelector);
+        return super.getElement(pageNameSelector);
     }
 
 }

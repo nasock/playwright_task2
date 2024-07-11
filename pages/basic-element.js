@@ -1,4 +1,4 @@
-class WebElement {
+class BasicElement {
 
      /**   
    * @param {import('playwright').Page} pwPage
@@ -19,6 +19,10 @@ class WebElement {
         return this.getElement(selector).fill(inputValue);
     }
 
+    pressEnter(){
+        this.pwPage.keyboard.press('Enter');
+    }
+
 }
 
-module.exports = WebElement;
+module.exports = BasicElement;

@@ -1,17 +1,25 @@
-const WebElement = require('./web-element.js');
+const BasicElement = require('./basic-element.js');
 
-const quickSearchSelector = 'div#quick-search';
+const baseSelector = 'div#header';
+const searchInputSelector = 'input#q';
 
-class HeaderComponent extends WebElement{
+class HeaderComponent extends BasicElement{
 
-    constructor(pwPage, baseSelector) {
+    constructor(pwPage) {
         super(pwPage);
         this.pwPage = pwPage;
-        this.baseSelector = baseSelector;
     }
 
-    get quickSearch(){
-       return super.getElement(quickSearchSelector);
+    get headerElement(){
+        return super.getElement(baseSelector);
+    }
+
+    get searchInput(){
+       return super.getElement(searchInputSelector);
+    }
+
+    setSearchInput(value){
+        super.setValueInElement(searchInputSelector, value);
     }
 
 }

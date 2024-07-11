@@ -1,17 +1,21 @@
-const WebElement = require('./web-element.js');
+const BasicElement = require('./basic-element.js');
 
+const baseSelector = 'div#top-menu';
 const homeLinkSelector = 'a.home';
 const projectsLinkSelector = 'a.projects';
 const helpLinkSelector = 'a.help';
 const signInLinkSelector = 'a.login';
 const registerLinkSelector = 'a.register';
 
-class TopMenuComponent extends WebElement{
+class TopMenuComponent extends BasicElement{
 
-    constructor(pwPage, baseSelector) {
+    constructor(pwPage) {
         super(pwPage);
         this.pwPage = pwPage;
-        this.baseSelector = baseSelector;
+    }
+
+    get menuElement(){
+        return super.getElement(baseSelector);
     }
 
     clickHomeLink(){

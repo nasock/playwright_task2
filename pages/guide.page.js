@@ -1,6 +1,6 @@
-const BasicPageWithMainManu = require('./basic-with-main-menu.page.js');
+const BasicPageWithMainMenu = require('./basic-with-main-menu.page.js');
 
-class GuidePage extends BasicPageWithMainManu{
+class GuidePage extends BasicPageWithMainMenu{
 
     constructor(pwPage) {
         super(pwPage);
@@ -8,3 +8,5 @@ class GuidePage extends BasicPageWithMainManu{
     }
 
 }
+
+module.exports = GuidePage;

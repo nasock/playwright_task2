@@ -18,3 +18,5 @@ class ProjectsPage extends BasicPage{
         return super.getElement(projectListSelector);
     }
 }
+
+module.exports = ProjectsPage;
