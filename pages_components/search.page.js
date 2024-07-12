@@ -12,7 +12,7 @@ const wikiPagesTypeSelector = 'input#wiki_pages';
 const messagesTypeSelector = 'input#messages';
 const projectsTypeSelector = 'input#projects';
 const redminePluginsTypeSelector = 'input#redmine_plugins';
-const serchResultSelector = 'dl#search-results';
+const searchResultSelector = 'dl#search-results';
 
 class SearchPage extends BasicPageWithMainMenu{
 
@@ -69,8 +69,8 @@ class SearchPage extends BasicPageWithMainMenu{
         return await super.getElement(redminePluginsTypeSelector);
     }
 
-    async getSerchResult(){
-        return await super.getElement(serchResultSelector);
+    async getSearchResult(){
+        return await super.getElement(searchResultSelector);
     }
 
 }

@@ -1,9 +1,10 @@
-const testData = 
+const checkTestData = 
 {
-    projectsPageURL: 'projects',
-    guidePageURL: 'guide',
-    loginPageURL: 'login', 
-    registerPageURL: 'account/register',
+    mainPageURL: 'https://www.redmine.org/',
+    projectsPageURL: 'https://www.redmine.org/projects',
+    guidePageURL: 'https://www.redmine.org/guide',
+    loginPageURL: 'https://www.redmine.org/login', 
+    registerPageURL: 'https://www.redmine.org/account/register',
     
     // Website navigation: 
         // tast case 1: Navigate the site via the navigation bar in the top menu
@@ -16,17 +17,11 @@ const testData =
 
     // Website search: 
         // tast case 2: Search bar in the header (valid input)
-        searchValue: 'javascript',
         searchPageName: 'Search',
         searchDefaultScope: 'Redmine and its subprojects',
 
 
     // 'Registration'
-    login: 'anna_',
-    password: '1234567890',
-    firstName: 'Ann',
-    lastName: 'Koval',
-
         // tast case 3: Registration (valid input)
         confirmationText: 'Account was successfully created. An email containing the instructions to activate your account was sent to ',
 
@@ -48,4 +43,4 @@ const testData =
                             ],
 };
 
-module.exports = testData;
+module.exports = checkTestData;
