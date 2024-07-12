@@ -1,27 +1,40 @@
 ## summary of repo: 
-	# 5 tests for https://www.redmine.org/: written on _Javascript_ with _Playwright_ framework
+5 tests for https://www.redmine.org/: written on *Javascript* with *Playwright* framework
+
 
 ## requirements:
-	# 1) create _5_ test cases (save as Excel or Word file)
-	# 2) implement the tests in _Playwright_ with _page object model_
-	# 3) add _Raid_ or _Allure_ report
-	# 4) deploy to _GitHub_
+1) create *5* test cases (save as Excel or Word file)
+2) implement the tests in *Playwright* with *page object model*
+3) add *Raid* or *Allure* report
+4) deploy to *GitHub*
+
 
 ## steps to install:
-	# 1) _Playwright_:
-		# npm init playwright@latest
-		
-	# 2) _Faker_:
-		# npm install @faker-js/faker --save-dev
+1) *Playwright*:
+```
+npm init playwright@latest
+```
 
-	# 3) _Allure_:
-		# npm install --save-dev allure-commandline
-		# npm install --save-dev allure-playwright
+2) *Faker*:
+```
+npm install @faker-js/faker --save-dev
+```
+
+3) *Allure*:
+```
+npm install --save-dev allure-commandline
+npm install --save-dev allure-playwright
+```
 
 		
 ## steps to launch:
-		# npx playwright test
+```
+npx playwright test
+```
 
 
 ## steps to create the report:
-		# npx allure serve allure-results
+```
+npx allure serve allure-results
+```
+
