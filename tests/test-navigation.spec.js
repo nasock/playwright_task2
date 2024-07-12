@@ -6,7 +6,6 @@ const GuidePage = require('../pages_components/guide.page.js');
 const LoginPage = require('../pages_components/login.page.js');
 const RegisterPage = require('../pages_components/register.page.js');
 
-
 test.beforeEach( async ({ page }) => {
     await page.goto('');
 });
