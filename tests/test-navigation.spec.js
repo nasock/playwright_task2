@@ -50,7 +50,7 @@ test.describe('Website navigation', () => {
         await (await webPage.getTopMenuComponent()).clickHomeLink();
         webPage = new HomePage(page);
 
-        await checkCommonComponents(page, webPage, baseURL);
+        await checkCommonComponents(page, webPage, checkTestData.mainPageURL);
         await expect(await webPage.getPageName()).toContainText(checkTestData.mainPageName);
         await expect(await (await webPage.getHeaderComponent()).getMainMenu()).toBeVisible();
         await expect(await (await webPage.getHeaderComponent()).getSelectedTab()).toHaveText(checkTestData.defaultMainMenuTab);
