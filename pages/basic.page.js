@@ -3,8 +3,7 @@ const HeaderComponent = require('./header.component.js');
 const TopMenuComponent = require('./top-menu.component.js');
 
 const sidebarSelector = 'div#sidebar';
-const pageNameSelector = 'div#main h1';
-const pageSmallNameSelector = 'div#main h2';
+const pageNameSelector = 'div#main h2';
 
 class BasicPage extends BasicElement{
 
@@ -13,20 +12,20 @@ class BasicPage extends BasicElement{
         this.pwPage = pwPage;
     }
 
-    get topMenuComponent(){
-        return new TopMenuComponent(pwPage);
+    async getTopMenuComponent(){
+        return await new TopMenuComponent(this.pwPage);
     }
 
-    get headerComponent(){
-        return new HeaderComponent(pwPage);
+    async getHeaderComponent(){
+        return await new HeaderComponent(this.pwPage);
     }
 
-    get sidebar(){
-        return super.getElement(sidebarSelector);
+    async getSidebar(){
+        return await super.getElement(sidebarSelector);
     }
 
-    get pageName(){
-        return super.getElement(pageNameSelector);
+    async getPageName(){
+        return await super.getElement(pageNameSelector);
     }
 
 }

@@ -14,28 +14,28 @@ class TopMenuComponent extends BasicElement{
         this.pwPage = pwPage;
     }
 
-    get menuElement(){
-        return super.getElement(baseSelector);
+    async getMenuElement(){
+        return await super.getElement(baseSelector);
     }
 
-    clickHomeLink(){
-        super.clickElement(homeLinkSelector);
+    async clickHomeLink(){
+        await super.clickElement(homeLinkSelector);
     }
 
-    clickProjectsLink(){
-        super.clickElement(projectsLinkSelector);
+    async clickProjectsLink(){
+        await super.clickElement(projectsLinkSelector);
     }
 
-    clickHelpLink(){
-        super.clickElement(helpLinkSelector);
+    async clickHelpLink(){
+        await super.clickElement(helpLinkSelector);
     }
 
-    clickSignInLink(){
-        super.clickElement(signInLinkSelector);
+    async clickSignInLink(){
+        await super.clickElement(signInLinkSelector);
     }
 
-    clickRegisterLink(){
-        super.clickElement(registerLinkSelector);
+    async clickRegisterLink(){
+        await super.clickElement(registerLinkSelector);
     }
 
 }

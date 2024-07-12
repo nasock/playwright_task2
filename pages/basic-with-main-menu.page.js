@@ -8,8 +8,8 @@ class BasicPageWithMainMenu extends BasicPage{
         this.pwPage = pwPage;
     }
 
-    get headerComponent(){
-        return new HeaderWithMainMenuComponent(pwPage);
+    async getHeaderComponent(){
+        return await new HeaderWithMainMenuComponent(this.pwPage);
     }
 
 }

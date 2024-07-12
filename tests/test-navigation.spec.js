@@ -1,63 +1,69 @@
+const {test, expect} = require('@playwright/test');
+const testData = require('./test-data.js');
 const HomePage = require('../pages/home.page.js');
 const ProjectsPage = require('../pages/projects.page.js');
 const GuidePage = require('../pages/guide.page.js');
 const LoginPage = require('../pages/login.page.js');
 const RegisterPage = require('../pages/register.page.js');
 
-test.beforeEach(({ page }) => {
-    page.goto('https://www.redmine.org/');
-  });
+// TODO 1 put in the file .env
+const mainPageURL = 'https://www.redmine.org/';
+
+test.beforeEach( async ({ page }) => {
+   // TODO 3 goto(mainPageURL) put in some kind of config to start automaticaly
+    await page.goto(mainPageURL);
+});
 
 test.describe('Website navigation', () => {
-    test('tast case 1: Navigate the site via the navigation bar in the top menu', ({ page }) => {
+    test('tast case 1: Navigate the site via the navigation bar in the top menu', async ({ page }) => {
         let webPage = new HomePage(page);
 
         // step 1
-        webPage.topMenuComponent.clickProjectsLink();
+        await (await webPage.getTopMenuComponent()).clickProjectsLink();
         webPage = new ProjectsPage(page);
 
-        checkCommonComponents(webPage, 'https://www.redmine.org/projects');
-        expect(webPage.pageName).toHaveText('Projects');
-        expect(webPage.projectList).toBeVisible();
+        await checkCommonComponents(page, webPage, mainPageURL + testData.projectsPageURL);
+        await expect(await webPage.getPageName()).toHaveText(testData.projectsPageName);
+        await expect(await webPage.getProjectList()).toBeVisible();
 
         // step 2
-        webPage.topMenuComponent.clickHelpLink();
+        await (await webPage.getTopMenuComponent()).clickHelpLink();
         webPage = new GuidePage(page);
 
-        checkCommonComponents(webPage, 'https://www.redmine.org/guide');
-        expect(webPage.pageName).toHaveText('Redmine guide');
-        expect(webPage.headerComponent.mainMenu).toBeVisible();
+        await checkCommonComponents(page, webPage, mainPageURL + testData.guidePageURL);
+        await expect(await webPage.getPageName()).toContainText(testData.guidePageName);
+        await expect(await (await webPage.getHeaderComponent()).getMainMenu()).toBeVisible();
 
         // step 3
-        webPage.topMenuComponent.clickSignInLink();
+        await (await webPage.getTopMenuComponent()).clickSignInLink();
         webPage = new LoginPage(page);
 
-        checkCommonComponents(webPage, 'https://www.redmine.org/login');
-        expect(webPage.loginForm).toBeVisible();
+        await checkCommonComponents(page, webPage, testData.loginPageURL);
+        await expect(await webPage.getLoginForm()).toBeVisible();
 
         // step 4
-        webPage.topMenuComponent.clickRegisterLink();
+        await (await webPage.getTopMenuComponent()).clickRegisterLink();
         webPage = new RegisterPage(page);
 
-        checkCommonComponents(webPage, 'https://www.redmine.org/account/register');
-        expect(webPage.pageName).toHaveText('Register ');
-        expect(webPage.registerForm).toBeVisible();
+        await checkCommonComponents(page, webPage, mainPageURL + testData.registerPageURL);
+        await expect(await webPage.getPageName()).toHaveText(testData.registerPageName);
+        await expect(await webPage.getRegisterForm()).toBeVisible();
 
          // step 4
-        webPage.topMenuComponent.clickHomeLink();
+        await (await webPage.getTopMenuComponent()).clickHomeLink();
         webPage = new HomePage(page);
 
-        checkCommonComponents(webPage, 'https://www.redmine.org/');
-        expect(webPage.pageName).toHaveText('Redmine');
-        expect(webPage.headerComponent.mainMenu).toBeVisible();
-        expect(webPage.headerComponent.selectedTab).toHaveText('Wiki');
+        await checkCommonComponents(page, webPage, mainPageURL);
+        await expect(await webPage.getPageName()).toContainText(testData.mainPageName);
+        await expect(await (await webPage.getHeaderComponent()).getMainMenu()).toBeVisible();
+        await expect(await (await webPage.getHeaderComponent()).getSelectedTab()).toHaveText(testData.defaultMainMenuTab);
 
     });
 
-    function checkCommonComponents(webPage, pageURL) {
-        expect(page).toHaveURL(pageURL);
-        expect(webPage.topMenuComponent.menuElement).toBeVisible();
-        expect(webPage.headerComponent.headerElement).toBeVisible();
-        expect(webPage.sidebar).toBeVisible();
+    async function checkCommonComponents(pwPage, webPage, pageURL) {
+        await expect(pwPage).toHaveURL(pageURL);
+        await expect(await (await webPage.getTopMenuComponent()).getMenuElement()).toBeVisible();
+        await expect(await (await webPage.getHeaderComponent()).getHeaderElement()).toBeVisible();
+        await expect(await webPage.getSidebar()).toBeVisible();
     };
 })

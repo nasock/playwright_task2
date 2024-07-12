@@ -17,64 +17,64 @@ class RegisterPage extends BasicPage{
         this.pwPage = pwPage;
     }
 
-    get registerForm(){
-        return super.getElement(registerFormSelector);
+    async getRegisterForm(){
+        return await super.getElement(registerFormSelector);
     }
 
-    get loginInput(){
-        return super.getElement(loginInputSelector);
+    async getLoginInput(){
+        return await super.getElement(loginInputSelector);
     }
 
-    get passwordInput(){
-        return super.getElement(passwordInputSelector);
+    async getPasswordInput(){
+        return await super.getElement(passwordInputSelector);
     }
 
-    get passwordConfirmationInput(){
-        return super.getElement(passwordConfirmationInputSelector);
+    async getPasswordConfirmationInput(){
+        return await super.getElement(passwordConfirmationInputSelector);
     }
 
-    get firsNameInput(){
-        return super.getElement(firsNameInputSelector);
+    async getFirsNameInput(){
+        return await super.getElement(firsNameInputSelector);
     }
 
-    get lastNameInput(){
-        return super.getElement(lastNameInputSelector);
+    async getLastNameInput(){
+        return await super.getElement(lastNameInputSelector);
     }
 
-    get emailInput(){
-        return super.getElement(emailInputSelector);
+    async getEmailInput(){
+        return await super.getElement(emailInputSelector);
     }
 
-    get errorMessages(){
-        return super.getElement(errorMessagesSelector);
+    async getErrorMessages(){
+        return await super.getElements(errorMessagesSelector);
     }
 
-    setLoginInput(value){
-        super.setValueInElement(loginInputSelector, value);
+    async setLoginInput(value){
+        await super.setValueInElement(loginInputSelector, value);
     }
 
-    setPasswordInput(value){
-        super.setValueInElement(passwordInputSelector, value);
+    async setPasswordInput(value){
+        await super.setValueInElement(passwordInputSelector, value);
     }
 
-    setPasswordConfirmationInput(value){
-        super.setValueInElement(passwordConfirmationInputSelector, value);
+    async setPasswordConfirmationInput(value){
+        await super.setValueInElement(passwordConfirmationInputSelector, value);
     }
 
-    setFirsNameInput(value){
-        super.setValueInElement(firsNameInputSelector, value);
+    async setFirsNameInput(value){
+        await super.setValueInElement(firsNameInputSelector, value);
     }
 
-    setLastNameInput(value){
-        super.setValueInElement(lastNameInputSelector, value);
+    async setLastNameInput(value){
+        await super.setValueInElement(lastNameInputSelector, value);
     }
 
-    setEmailInput(value){
-        super.setValueInElement(emailInputSelector, value);
+    async setEmailInput(value){
+        await super.setValueInElement(emailInputSelector, value);
     }
 
-    clickSubmitButton(){
-        super.clickElement(submitButtonSelector);
+    async clickSubmitButton(){
+        await super.clickElement(submitButtonSelector);
     }
 
 }

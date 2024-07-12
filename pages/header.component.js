@@ -10,16 +10,16 @@ class HeaderComponent extends BasicElement{
         this.pwPage = pwPage;
     }
 
-    get headerElement(){
-        return super.getElement(baseSelector);
+    async getHeaderElement(){
+        return await super.getElement(baseSelector);
     }
 
-    get searchInput(){
-       return super.getElement(searchInputSelector);
+    async getSearchInput(){
+       return await super.getElement(searchInputSelector);
     }
 
-    setSearchInput(value){
-        super.setValueInElement(searchInputSelector, value);
+    async setSearchInput(value){
+        await super.setValueInElement(searchInputSelector, value);
     }
 
 }

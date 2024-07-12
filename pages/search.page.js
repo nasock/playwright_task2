@@ -1,6 +1,5 @@
 const BasicPageWithMainMenu = require('./basic-with-main-menu.page.js');
 
-const pageNameSelector = 'div#main h2';
 const searchInputSelector = 'input#search-input';
 const selectedScopeSelector = 'select#scope option[selected="selected"]';
 const allWordsCheckboxSelector = 'input#all_words';
@@ -22,60 +21,56 @@ class SearchPage extends BasicPageWithMainMenu{
         this.pwPage = pwPage;
     }
 
-    get pageName(){
-        return super.getElement(pageNameSelector);
+    async getSearchInput(){
+        return await super.getElement(searchInputSelector);
     }
 
-    get searchInput(){
-        return super.getElement(searchInputSelector);
+    async getSelectedScope(){
+        return await super.getElement(selectedScopeSelector);
     }
 
-    get selectedScope(){
-        return super.getElement(selectedScopeSelector);
+    async getAllWordsCheckbox(){
+        return await super.getElement(allWordsCheckboxSelector);
     }
 
-    get allWordsCheckbox(){
-        return super.getElement(allWordsCheckboxSelector);
+    async getTitleOnlyCheckbox(){
+        return await super.getElement(titleOnlyCheckboxSelector);
     }
 
-    get titleOnlyCheckbox(){
-        return super.getElement(titleOnlyCheckboxSelector);
-    }
-
-    get issuesType(){
+    async getIssuesType(){
         return super.getElement(issuesTypeSelector);
     }
 
-    get newsType(){
-        return super.getElement(newsTypeSelector);
+    async getNewsType(){
+        return await super.getElement(newsTypeSelector);
     }
 
-    get documentsType(){
-        return super.getElement(documentsTypeSelector);
+    async getDocumentsType(){
+        return await super.getElement(documentsTypeSelector);
     }
 
-    get changesetsType(){
-        return super.getElement(changesetsTypeSelector);
+    async getChangesetsType(){
+        return await super.getElement(changesetsTypeSelector);
     }
 
-    get wikiPagesType(){
-        return super.getElement(wikiPagesTypeSelector);
+    async getWikiPagesType(){
+        return await super.getElement(wikiPagesTypeSelector);
     }
 
-    get messagesType(){
-        return super.getElement(messagesTypeSelector);
+    async getMessagesType(){
+        return await super.getElement(messagesTypeSelector);
     }
 
-    get projectsType(){
-        return super.getElement(projectsTypeSelector);
+    async getProjectsType(){
+        return await super.getElement(projectsTypeSelector);
     }
 
-    get redminePluginsType(){
-        return super.getElement(redminePluginsTypeSelector);
+    async getRedminePluginsType(){
+        return await super.getElement(redminePluginsTypeSelector);
     }
 
-    get serchResult(){
-        return super.getElement(serchResultSelector);
+    async getSerchResult(){
+        return await super.getElement(serchResultSelector);
     }
 
 }

@@ -10,12 +10,12 @@ class ProjectsPage extends BasicPage{
         this.pwPage = pwPage;
     }
 
-    get queryFormn(){
-        return super.getElement(queryFormnSelector);
+    async getQueryFormn(){
+        return await super.getElement(queryFormnSelector);
     }
 
-    get projectList(){
-        return super.getElement(projectListSelector);
+    async getProjectList(){
+        return await super.getElement(projectListSelector);
     }
 }
 

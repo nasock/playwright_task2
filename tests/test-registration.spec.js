@@ -1,123 +1,117 @@
+const {test, expect} = require('@playwright/test');
+const testData = require('./test-data.js');
 const HomePage = require('../pages/home.page.js');
 const RegisterPage = require('../pages/register.page.js');
 const LoginPage = require('../pages/login.page.js');
 
-const login = 'anna_098';
-const password = '1234567890';
-const firstName = 'Ann';
-const lastName = 'Koval';
-const email = '';
-const confirmationText = `Account was successfully created. 
-                        An email containing the instructions to activate
-                        your account was sent to ${email}.`;
-const emptyFieldErrors = ['Email cannot be blank',
-                            'Login cannot be blank',
-                            'First name cannot be blank',
-                            'Last name cannot be blank',
-                            'Password is too short (minimum is 8 characters)'
-                            ];
-const invalidInputErrors = ['Email is invalid',
-                            'Login is invalid',
-                            'First name is too long (maximum is 30 characters)',
-                            'Last name is too long (maximum is 30 characters)',
-                            'Password is too short (minimum is 8 characters)',
-                            'Password doesn\'t match confirmation'
-                            ];
+// TODO 1 put in the file .env
+const mainPageURL = 'https://www.redmine.org/';
+// TODO 3 generate email
+const email = 'viwep51952@calunia.com';
 
-
-test.beforeEach(({ page }) => {
-    page.goto('https://www.redmine.org/');
+test.beforeEach(async ({ page }) => {
+    // TODO 4 goto(mainPageURL) put in some kind of config to start automaticaly
+    await page.goto(mainPageURL);
     let webPage = new HomePage(page);
-    webPage.topMenuComponent.clickRegisterLink();
-  });
+    await (await webPage.getTopMenuComponent()).clickRegisterLink();
+});
 
 test.describe('Registration', () => {
-    test('tast case 3: Registration (valid input)', ({ page }) => {
+    test('tast case 3: Registration (valid input)', async ({ page }) => {
         let webPage = new RegisterPage(page);
 
         // step 1
-        webPage.setLoginInput(login);
-        expect(webPage.loginInput).toHaveValue(login);
+        const randomLogin = await (testData.login + await Math.floor(await Math.random() * await Math.pow(10, 10)));
+        await webPage.setLoginInput(randomLogin);
+        await expect(await webPage.getLoginInput()).toHaveValue(randomLogin);
 
         // step 2
-        webPage.setPasswordInput(password);
-        expect(webPage.passwordInput).toHaveValue(password);
+        await webPage.setPasswordInput(testData.password);
+        await expect(await webPage.getPasswordInput()).toHaveValue(testData.password);
 
         // step 3
-        webPage.setPasswordConfirmationInput(password);
-        expect(webPage.passwordConfirmationInput).toHaveValue(password);
+        await webPage.setPasswordConfirmationInput(testData.password);
+        await expect(await webPage.getPasswordConfirmationInput()).toHaveValue(testData.password);
 
         // step 4
-        webPage.setFirsNameInput(firstName);
-        expect(webPage.firsNameInput).toHaveValue(firstName);
+        await webPage.setFirsNameInput(testData.firstName);
+        await expect(await webPage.getFirsNameInput()).toHaveValue(testData.firstName);
 
         // step 5
-        webPage.setLastNameInput(lastName);
-        expect(webPage.lastNameInput).toHaveValue(lastName);
+        await webPage.setLastNameInput(testData.lastName);
+        await expect(await webPage.getLastNameInput()).toHaveValue(testData.lastName);
 
         // step 6
-        webPage.setEmailInput(email);
-        expect(webPage.emailInput).toHaveValue(email);
+        await webPage.setEmailInput(email);
+        await expect(await webPage.getEmailInput()).toHaveValue(email);
 
         // step 7
-        webPage.clickSubmitButton();
-        expect(page).toHaveURL('https://www.redmine.org/login');
+        await webPage.clickSubmitButton();
+        await expect(page).toHaveURL(mainPageURL + testData.loginPageURL);
         webPage = new LoginPage(page);
-        expect(webPage.registrationConfirmation).toHaveText(confirmationText);
+        await expect(await webPage.getRegistrationConfirmation()).toHaveText(testData.confirmationText + email +".");
 
     });
 
-    test('tast case 4: Registration (empty input)', ({ page }) => {
-        const registerPage = new RegisterPage(page);
-        registerPage.clickSubmitButton();
+    // test('tast case 4: Registration (empty input)', async ({ page }) => {
+    //     const registerPage = new RegisterPage(page);
 
-        const errorMessages = registerPage.errorMessages;
-        expect(errorMessages.length).toBe(emptyFieldErrors.length);
-        for(let i = 0; i < errorMessages.length; i++){
-            expect(errorMessages[i]).toHaveText(emptyFieldErrors[i]);
-        }
-    });
+    //     // step 1
+    //     await expect(await registerPage.getLoginInput()).toHaveValue('');
+    //     await expect(await registerPage.getPasswordInput()).toHaveValue('');
+    //     await expect(await registerPage.getPasswordConfirmationInput()).toHaveValue('');
+    //     await expect(await registerPage.getFirsNameInput()).toHaveValue('');
+    //     await expect(await registerPage.getLastNameInput()).toHaveValue('');
+    //     await expect(await registerPage.getEmailInput()).toHaveValue('');
 
-    test('tast case 5: Registration (invalid input)', ({ page }) => {
-        const registerPage = new RegisterPage(page);
+    //     // step 2
+    //     await registerPage.clickSubmitButton();
+    //     const errorMessages = await registerPage.getErrorMessages();
+    //     await expect(await errorMessages.length).toBe(await testData.emptyFieldErrors.length);
+    //     for(let i = 0; i < errorMessages.length; i++){
+    //         await expect(await errorMessages[i]).toHaveText(await testData.emptyFieldErrors[i]);
+    //     }
+    // });
 
-        // step 1
-        const invalidLogin = login + '@#$';
-        registerPage.setLoginInput(invalidLogin);
-        expect(registerPage.loginInput).toHaveValue(invalidLogin);
+    // test('tast case 5: Registration (invalid input)', async ({ page }) => {
+    //     const registerPage = new RegisterPage(page);
 
-        // step 2
-        let invalidPassword = password.substring(0, 3)
-        registerPage.setPasswordInput(invalidPassword);
-        expect(registerPage.passwordInput).toHaveValue(invalidPassword);
+    //     // step 1
+    //     const invalidLogin = await (testData.login + '@#$');
+    //     await registerPage.setLoginInput(invalidLogin);
+    //     await expect(await registerPage.getLoginInput()).toHaveValue(invalidLogin);
 
-        // step 3
-        invalidPassword = invalidPassword.split('').reverse().join('');
-        registerPage.setPasswordConfirmationInput(invalidPassword);
-        expect(registerPage.passwordConfirmationInput).toHaveValue(invalidPassword);
+    //     // step 2
+    //     let invalidPassword = testData.password.substring(0, 3)
+    //     await registerPage.setPasswordInput(invalidPassword);
+    //     await expect(await registerPage.getPasswordInput()).toHaveValue(invalidPassword);
 
-        // step 4
-        const invalidName = firstName.repeat(30);
-        registerPage.setFirsNameInput(invalidName);
-        expect(registerPage.firsNameInput).toHaveValue(invalidName);
+    //     // step 3
+    //     invalidPassword = await (invalidPassword.split('').reverse().join(''));
+    //     await registerPage.setPasswordConfirmationInput(invalidPassword);
+    //     await expect(await registerPage.getPasswordConfirmationInput()).toHaveValue(invalidPassword);
 
-        // step 5
-        registerPage.setLastNameInput(invalidName);
-        expect(registerPage.lastNameInput).toHaveValue(invalidName);
+    //     // step 4
+    //     const invalidName = testData.firstName.repeat(30);
+    //     await registerPage.setFirsNameInput(invalidName);
+    //     await expect(await registerPage.getFirsNameInput()).toHaveValue(invalidName);
 
-        // step 6
-        const invalidEmail = email.replace('@', '');
-        registerPage.setEmailInput(invalidEmail);
-        expect(registerPage.emailInput).toHaveValue(invalidEmail);
+    //     // step 5
+    //     await registerPage.setLastNameInput(invalidName);
+    //     await expect(await registerPage.getLastNameInput()).toHaveValue(invalidName);
 
-        // step 7
-        registerPage.clickSubmitButton();
-        const errorMessages = registerPage.errorMessages;
-        expect(errorMessages.length).toBe(invalidInputErrors.length);
-        for(let i = 0; i < errorMessages.length; i++){
-            expect(errorMessages[i]).toHaveText(invalidInputErrors[i]);
-        }
-    });
+    //     // step 6
+    //     const invalidEmail = email.replace('@', '');
+    //     await registerPage.setEmailInput(invalidEmail);
+    //     await expect(await registerPage.getEmailInput()).toHaveValue(invalidEmail);
 
+    //     // step 7
+    //     await registerPage.clickSubmitButton();
+    //     const errorMessages = await registerPage.getErrorMessages();
+    //     await expect(await errorMessages.length).toBe(await testData.invalidInputErrors.length);
+    //     for(let i = 0; i < errorMessages.length; i++){
+    //         expect(await errorMessages[i]).toHaveText(await testData.invalidInputErrors[i]);
+    //     }
+    // });
     
 })

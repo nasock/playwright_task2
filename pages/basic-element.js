@@ -7,20 +7,24 @@ class BasicElement {
         this.pwPage = pwPage;
     }
 
-    getElement(selector){
-        return this.pwPage.locator(selector);
+    async getElement(selector){
+        return await this.pwPage.locator(selector);
     }
 
-    clickElement(selector){
-        this.getElement(selector).click();
+    async getElements(selector){
+        return await this.pwPage.locator(selector).all();
     }
 
-    setValueInElement(selector, inputValue){
-        return this.getElement(selector).fill(inputValue);
+    async clickElement(selector){
+        await (await this.getElement(selector)).click();
     }
 
-    pressEnter(){
-        this.pwPage.keyboard.press('Enter');
+    async setValueInElement(selector, inputValue){
+        await (await this.getElement(selector)).fill(inputValue);
+    }
+
+    async pressEnter(){
+        await this.pwPage.keyboard.press('Enter');
     }
 
 }

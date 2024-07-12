@@ -10,12 +10,12 @@ class HeaderWithMainMenuComponent extends HeaderComponent{
         this.pwPage = pwPage;
     }
 
-    get mainMenu(){
-        return super.getElement(mainMenuSelector);
+    async getMainMenu(){
+        return await super.getElement(mainMenuSelector);
     }
 
-    get selectedTab(){
-        return super.getElement(selectedTabSelector);
+    async getSelectedTab(){
+        return await super.getElement(selectedTabSelector);
     }
 
 }

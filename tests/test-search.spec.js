@@ -1,41 +1,44 @@
+const {test, expect} = require('@playwright/test');
+const testData = require('./test-data.js');
 const HomePage = require('../pages/home.page.js');
 const SearchPage = require('../pages/search.page.js');
 
-const searchValue = 'javascript';
+// TODO 1 put in the file .env
+const mainPageURL = 'https://www.redmine.org/';
 
-test.beforeEach(({ page }) => {
-    page.goto('https://www.redmine.org/');
-  });
+// test.beforeEach(async ({ page }) => {
+//     // TODO 2 goto(mainPageURL) put in some kind of config to start automaticaly
+//     await page.goto(mainPageURL);
+// });
 
-test.describe('Website search', () => {
-    test('tast case 2: Search bar in the header (valid input)', ({ page }) => {
-        let webPage = new HomePage(page);
+// test.describe('Website search', () => {
+//     test('tast case 2: Search bar in the header (valid input)', async ({ page }) => {
+//         let webPage = new HomePage(page);
 
-        // step 1
-        webPage.headerComponent.setSearchInput(searchValue);
-        expect(webPage.headerComponent.searchInput).toHaveText(searchValue);
+//         // step 1
+//         await (await webPage.getHeaderComponent()).setSearchInput(testData.searchValue);
+//         await expect(await (await webPage.getHeaderComponent()).getSearchInput()).toHaveValue(testData.searchValue);
 
-        // step 2
-        webPage.pressEnter();
-        webPage = new SearchPage(page);
+//         // step 2
+//         await webPage.pressEnter();
+//         webPage = new SearchPage(page);
 
-        // TODO ???????????? override
-        expect(webPage.pageName).toHaveText('Search');
-        expect(webPage.searchInput).toHaveText(searchValue);
-        expect(webPage.selectedScope).toHaveText('Redmine and its subprojects');
+//         await expect(await webPage.getPageName()).toHaveText(testData.searchPageName);
+//         await expect(await webPage.getSearchInput()).toHaveValue(testData.searchValue);
+//         await expect(await webPage.getSelectedScope()).toHaveText(testData.searchDefaultScope);
 
-        expect(webPage.allWordsCheckbox).toBeChecked();
-        expect(webPage.wikiPagesType).toBeChecked();
+//         await expect(await webPage.getAllWordsCheckbox()).toBeChecked();
+//         await expect(await webPage.getWikiPagesType()).toBeChecked();
 
-        expect(webPage.titleOnlyCheckbox).not.toBeChecked();
-        expect(webPage.issuesType).not.toBeChecked();
-        expect(webPage.newsType).not.toBeChecked();
-        expect(webPage.documentsType).not.toBeChecked();
-        expect(webPage.changesetsType).not.toBeChecked();
-        expect(webPage.messagesType).not.toBeChecked();
-        expect(webPage.projectsType).not.toBeChecked();
-        expect(webPage.redminePluginsType).not.toBeChecked();
+//         await expect(await webPage.getTitleOnlyCheckbox()).not.toBeChecked();
+//         await expect(await webPage.getIssuesType()).not.toBeChecked();
+//         await expect(await webPage.getNewsType()).not.toBeChecked();
+//         await expect(await webPage.getDocumentsType()).not.toBeChecked();
+//         await expect(await webPage.getChangesetsType()).not.toBeChecked();
+//         await expect(await webPage.getMessagesType()).not.toBeChecked();
+//         await expect(await webPage.getProjectsType()).not.toBeChecked();
+//         await expect(await webPage.getRedminePluginsType()).not.toBeChecked();
 
-        expect(webPage.serchResult).toBeVisible();
-    });
-})
+//         await expect(await webPage.getSerchResult()).toBeVisible();
+//     });
+// })

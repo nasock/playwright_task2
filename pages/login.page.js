@@ -10,16 +10,16 @@ class LoginPage extends BasicPage{
         this.pwPage = pwPage;
     }
 
-    get pageName(){
+    async getPageName(){
         return undefined;
     }
 
-    get loginForm(){
-        return super.getElement(loginFormSelector);
+    async getLoginForm(){
+        return await super.getElement(loginFormSelector);
     }
 
-    get registrationConfirmation(){
-        return super.getElement(registrationConfirmationSelector);
+    async getRegistrationConfirmation(){
+        return await super.getElement(registrationConfirmationSelector);
     }
 }
 
