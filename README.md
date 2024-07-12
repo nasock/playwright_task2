@@ -19,6 +19,8 @@ npm install @faker-js/faker --save-dev
 3) Allure:
 ```
 npm install --save-dev allure-commandline
+```
+```
 npm install --save-dev allure-playwright
 ```
 	
