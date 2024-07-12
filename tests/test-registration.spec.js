@@ -10,7 +10,7 @@ const mainPageURL = 'https://www.redmine.org/';
 const email = 'viwep51952@calunia.com';
 
 test.beforeEach(async ({ page }) => {
-    // TODO 4 goto(mainPageURL) put in some kind of config to start automaticaly
+    // TODO 2 goto(mainPageURL) put in some kind of config to start automaticaly
     await page.goto(mainPageURL);
     let webPage = new HomePage(page);
     await (await webPage.getTopMenuComponent()).clickRegisterLink();

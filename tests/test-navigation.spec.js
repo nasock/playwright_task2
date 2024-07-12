@@ -10,7 +10,7 @@ const RegisterPage = require('../pages/register.page.js');
 const mainPageURL = 'https://www.redmine.org/';
 
 test.beforeEach( async ({ page }) => {
-   // TODO 3 goto(mainPageURL) put in some kind of config to start automaticaly
+   // TODO 2 goto(mainPageURL) put in some kind of config to start automaticaly
     await page.goto(mainPageURL);
 });
 
