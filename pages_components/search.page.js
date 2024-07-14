@@ -13,12 +13,17 @@ const messagesTypeSelector = 'input#messages';
 const projectsTypeSelector = 'input#projects';
 const redminePluginsTypeSelector = 'input#redmine_plugins';
 const searchResultSelector = 'dl#search-results';
+const pageNameSelector = 'div#content>h2';
 
 class SearchPage extends BasicPageWithMainMenu{
 
     constructor(pwPage) {
         super(pwPage);
         this.pwPage = pwPage;
+    }
+
+    async getPageName(){
+        return await super.getElement(pageNameSelector);
     }
 
     async getSearchInput(){

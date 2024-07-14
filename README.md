@@ -31,6 +31,9 @@ npx playwright test
 
 ## steps to create the report:
 ```
+allure generate --clean
+```
+```
 npx allure serve allure-results
 ```
 

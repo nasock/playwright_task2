@@ -5,7 +5,7 @@ const HomePage = require('../pages_components/home.page.js');
 const RegisterPage = require('../pages_components/register.page.js');
 const LoginPage = require('../pages_components/login.page.js');
 
-const login = faker.string.alpha({ length: { min: 1, max: 8 } });;
+const login = faker.string.alphanumeric({ length: { min: 5, max: 15 } });;
 const password = faker.internet.password({ length: 8 });
 const email = faker.internet.email();
 const firstName = faker.person.firstName();
@@ -65,6 +65,7 @@ test.describe('Registration', () => {
 
         // step 2
         await registerPage.clickSubmitButton();
+        await expect(await registerPage.getErrorBox()).toBeVisible();
         const errorMessages = await registerPage.getErrorMessages();
         await expect(await errorMessages.length).toBe(await checkTestData.emptyFieldErrors.length);
         for(let i = 0; i < errorMessages.length; i++){
@@ -106,10 +107,11 @@ test.describe('Registration', () => {
 
         // step 7
         await registerPage.clickSubmitButton();
+        await expect(await registerPage.getErrorBox()).toBeVisible();
         const errorMessages = await registerPage.getErrorMessages();
         await expect(await errorMessages.length).toBe(await checkTestData.invalidInputErrors.length);
         for(let i = 0; i < errorMessages.length; i++){
-            expect(await errorMessages[i]).toHaveText(await checkTestData.invalidInputErrors[i]);
+            await expect(await errorMessages[i]).toHaveText(await checkTestData.invalidInputErrors[i]);
         }
     });
     

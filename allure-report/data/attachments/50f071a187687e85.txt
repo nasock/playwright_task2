@@ -1,0 +1,12 @@
+------
+locator('div#errorExplanation li').first()
+------
+locator('div#errorExplanation li').nth(1)
+------
+locator('div#errorExplanation li').nth(2)
+------
+locator('div#errorExplanation li').nth(3)
+------
+locator('div#errorExplanation li').nth(4)
+------
+locator('div#errorExplanation li').nth(5)

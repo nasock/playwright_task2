@@ -3,7 +3,7 @@ const HeaderComponent = require('./header.component.js');
 const TopMenuComponent = require('./top-menu.component.js');
 
 const sidebarSelector = 'div#sidebar';
-const pageNameSelector = 'div#main h2';
+const pageNameSelector = 'div#content>h2';
 
 class BasicPage extends BasicElement{
 
